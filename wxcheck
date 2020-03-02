@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>微信域名批量检测工具 - 矮鹿防封</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="矮鹿防封微信域名防封系统-专注于稳定的微信域名防封系统服务" >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="applicable-device" content="pc,mobile">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="baidu-site-verification" content="eLdFPe9iqr">
+	<link rel="shortcut icon" href="">
+	<link type="text/css" rel="stylesheet" href="http://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/ailu_style_wxcheck.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="https://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/ailu_base.css">
+	<link rel="stylesheet" type="text/css" href="http://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/ailu_style.css">
+</head>
+<body>
+	<div class="panel" style="background:url(https://www.openinstall.io/images/point5.png)">
+		<header>
+			  <div class="inner">
+				<a href="http://www.zaiailu.com/" target="_blank" class="nav_logo">
+				  <img alt="矮鹿防封" src="https://img.alicdn.com/imgextra/i2/653080144/O1CN01bdI2WZ1CvzXLBy9nT_!!2-martrix_bbs.png" />矮鹿防封</a>
+				<ul class="z_top_nav">
+					
+					<li>
+					<a class="i-link" href="http://www.zaiailu.com/">首页</a>
+					
+					</li>
+					
+					<li>
+					<a class="i-link" href="http://www.zaiailu.com/pbjb.html">屏蔽投诉按钮</a>
+					
+					</li>
+					
+					<li>
+					<a class="i-link" href="http://www.zaiailu.com/wxcheck">域名在线检测</a>
+					
+					</li>
+					
+					<li>
+					<a class="i-link" href="http://www.zaiailu.com/p/1635616.html">域名检测api接口</a>
+					
+					</li>
+					
+					<li>
+					<a class="i-link" href="http://www.zaiailu.com/p/1001004.html">域名防封</a>
+					
+					</li>
+					
+				</ul>
+			  </div>
+		</header>
+			<div class="panel_inner">
+				<div class="promo">
+					<h2>微信域名检测服务</h2>
+					<h3>提供微信域名检测接口，支持网页、api接口查询服务</h3>
+				</div>
+			  <div class="form1">
+						<textarea class="main-textarea" placeholder="请输入需要检测的链接" type="text" id="text" name="text" value="" size="60" style="height:160px;"></textarea>	
+						<button type="button" id="btn-tcn" class="main-button" onclick="wxcheck_form()">批量检测</button>
+			  </div>
+			  <div id="result_panel"></div>
+			</div>
+	</div>
+
+
+<!--版块一-->
+<div class="section">
+	<div class="container-fluid-900 ">
+		<div class="well">
+			<h2>Keyword Tool Helps To Find Keywords That Are Hidden In Google Keyword Planner</h2>
+			<p>Did you notice that you are unable to use <a href="https://ads.google.com/intl/en_us/home/tools/keyword-planner/" target="_blank">Keyword Planner</a> without an AdWords account?</p>
+			<p>There is a reason for that.</p>
+			<p>Keyword Planner - is a tool created for advertisers and is not meant for content creation or SEO. Yes, it does contain valuable data about keywords such as competition, suggested bid, average monthly searches, etc.</p>
+			<p>But, at the same time, it will hide profitable <a href="/long-tail-keywords" target="_blank">long-tail keywords</a> with thousands of monthly searches that can be used to create content for your website. Some digital marketing professionals think that it is done on purpose and helps Google to increase the competition and cost-per-click for a limited number of keywords.</p>
+			<p>Keyword Tool is the best alternative to Google Keyword Planner for content marketing and SEO as it does not hide popular keywords that can be used to create content for your website.</p>
+		</div>
+	</div>
+</div>
+
+
+<!--版块二-->
+<div class="section">
+	<div class="container-fluid-900 ">
+		<div class="well">
+			<h2>Keyword Tool Helps To Find Keywords That Are Hidden In Google Keyword Planner</h2>
+			<p>Did you notice that you are unable to use <a href="https://ads.google.com/intl/en_us/home/tools/keyword-planner/" target="_blank">Keyword Planner</a> without an AdWords account?</p>
+			<p>There is a reason for that.</p>
+			<p>Keyword Planner - is a tool created for advertisers and is not meant for content creation or SEO. Yes, it does contain valuable data about keywords such as competition, suggested bid, average monthly searches, etc.</p>
+			<p>But, at the same time, it will hide profitable <a href="/long-tail-keywords" target="_blank">long-tail keywords</a> with thousands of monthly searches that can be used to create content for your website. Some digital marketing professionals think that it is done on purpose and helps Google to increase the competition and cost-per-click for a limited number of keywords.</p>
+			<p>Keyword Tool is the best alternative to Google Keyword Planner for content marketing and SEO as it does not hide popular keywords that can be used to create content for your website.</p>
+		</div>
+	</div>
+</div>
+
+
+<footer id="footer">
+	<div class="container-fluid">
+		<p class="text-inline">Copyright © 2018 - 2019 ｜<a href="/"> 矮鹿防封</a>｜ <a href="/blog">博客</a></p>
+	</div>
+</footer>
+<script src="http://juhecdn.oss-cn-hangzhou.aliyuncs.com/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://yunapposs.oss-cn-hangzhou.aliyuncs.com/static/web/layer3/layer.js" charset="utf-8"></script>
+<script>
+var api_host = 'http://pay.jump-api.cn';
+function wxcheck_form(){
+	$("#result_panel").hide();
+	var url_longs = $("#text").val();
+	if(!url_longs) {
+		alert('输入格式不正确！');
+		return false;
+	}
+	$.get('/user/info',function(user_json){
+		my = JSON.parse(user_json);
+		$.post(api_host+"/"+"wxcheck/web_panel", {url_longs:url_longs,uid:my.uid,username:my.username,role:my.role,fid:my.fid,token:my.token,site_id:my.site_id},function(result){
+			$('#result_panel').html(result);
+			$("#result_panel").show();
+			wxcheck_handdle();
+		});
+	});
+	return false;
+}
+
+function wxcheck_handdle() {
+	var wxcheck_api_url = api_host+"/"+"wxcheck/web";
+	var em = $("*[data='-']:eq(0)");
+	if(em.length>0) {
+		em.attr('data','loading');
+		em.html('<img src="http://www.link114.cn/template/images/loading.gif" />');
+		$.post(wxcheck_api_url, {url_long:em.attr('url-long'),uid:my.uid,username:my.username,role:my.role,fid:my.fid,token:my.token,site_id:my.site_id},function(result){
+			if(result.indexOf('域名正常')==0) {
+				em.html('<span class="opt-result-ok" style="color:green;">域名正常</span>');
+				wxcheck_handdle();
+			} else  if(result.indexOf('域名被封')==0) {
+				em.html('<span class="opt-result-fail">域名被封</span>');
+				wxcheck_handdle();
+			}
+		});
+	}
+}
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1d8381d4a9a0b5dd84456a52b275f515";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

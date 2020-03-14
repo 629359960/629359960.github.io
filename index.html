@@ -174,6 +174,7 @@
         <a href="#" target="_blank">使用矮鹿防封前必读</a>&nbsp;&nbsp;|&nbsp;&nbsp; 联系我们：
         <a href="#">1960520477</a></div>
 		<script>
+		var notice_msg = '域名检测300/月（付费请加微信：heimavip1）';
 		var api_host = 'http://pay.jump-api.cn';
 		function wxcheck_form(){
 			$("#result_panel").hide();
@@ -182,24 +183,21 @@
 				alert('输入格式不正确！');
 				return false;
 			}
-			$.get('/user/info',function(user_json){
-				my = JSON.parse(user_json);
-				$.post(api_host+"/"+"wxcheck/web_panel", {url_longs:url_longs,uid:my.uid,username:my.username,role:my.role,fid:my.fid,token:my.token,site_id:my.site_id},function(result){
-					$('#result_panel').html(result);
-					$("#result_panel").show();
-					wxcheck_handdle();
-				});
+			$.post(api_host+"/"+"wxcheck/web_panel", {url_longs:url_longs},function(result){
+				$('#result_panel').html(result);
+				$("#result_panel").show();
+				wxcheck_handdle();
 			});
 			return false;
 		}
 		
 		function wxcheck_handdle() {
-			var wxcheck_api_url = api_host+"/"+"wxcheck/web";
+			var wxcheck_api_url = api_host+"/wxcheck/test";
 			var em = $("*[data='-']:eq(0)");
 			if(em.length>0) {
 				em.attr('data','loading');
 				em.html('<img src="http://www.link114.cn/template/images/loading.gif" />');
-				$.post(wxcheck_api_url, {url_long:em.attr('url-long'),uid:my.uid,username:my.username,role:my.role,fid:my.fid,token:my.token,site_id:my.site_id},function(result){
+				$.post(wxcheck_api_url, {url_long:em.attr('url-long')},function(result){
 					if(result.indexOf('域名正常')==0) {
 						em.html('<span class="opt-result-ok" style="color:green;">域名正常</span>');
 						wxcheck_handdle();
@@ -207,107 +205,19 @@
 						em.html('<span class="opt-result-fail">域名被封</span>');
 						wxcheck_handdle();
 					} else {
-						em.html('<span class="opt-result-fail">'+result+'</span>');
+						em.html('<span class="opt-result-fail">'+notice_msg || result+'</span>');
 						wxcheck_handdle();
 					}
 				});
 			}
 		}
-
 		</script>
-      <!--<script>var http = {
-          get: function(url, callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.onreadystatechange = function() {
-              if (xhr.readyState == 4) {
-                callback(xhr.responseText)
-              }
-            };
-            xhr.send()
-          },
-          post: function(url, data, callback) {
-            if (typeof data == "object") {
-              var arr = new Array();
-              var i = 0;
-              for (var attr in data) {
-                arr[i] = encodeURIComponent(attr) + "=" + encodeURIComponent(data[attr]);
-                i++
-              }
-              data = arr.join("&")
-            }
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url, true);
-            xhr.onreadystatechange = function() {
-              if (xhr.readyState == 4) {
-                callback(xhr.responseText)
-              }
-            };
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send(data)
-          }
-        };
-        var former = function(selector) {
-          var form = document.querySelector(selector);
-          var arr = {};
-          for (var i = 0; i < form.elements.length; i++) {
-            var feled = form.elements[i];
-            switch (feled.type) {
-            case undefined:
-            case "button":
-            case "file":
-            case "reset":
-            case "submit":
-              break;
-            case "checkbox":
-            case "radio":
-              if (!feled.checked) {
-                break
-              }
-            default:
-              if (arr[feled.name]) {
-                arr[feled.name] = arr[feled.name] + "," + feled.value
-              } else {
-                arr[feled.name] = feled.value
-              }
-            }
-          }
-          return arr
-        };
-        function submit_form() {
-          var data = former('#data_form');
-          data.uid = 'wy';
-          if (data.domain == '') {
-            layer.tips('填写正确的域名', '#url');
-            return false;
-          }
-          if (data.remark == '') {
-            data.remark == '';
-          }
-          http.get("http://wxcheck.wxjump-api.cn/926pzfzo/wxcheck?url=" + data.domain,
-          function(result) {
-            var ret = JSON.parse(result);
-            if (ret.status == 1) {
-              layer.msg('域名正常', {
-                icon: 1,
-                time: 4000
-              });
-            } else {
-              layer.msg('域名被封', {
-                icon: 2,
-                time: 4000
-              });
-            }
-          });
-          return false;
-        }</script>   
-		-->
-      <script>var _hmt = _hmt || []; (function() {
+		<script>var _hmt = _hmt || []; (function() {
           var hm = document.createElement("script");
           hm.src = "https://hm.baidu.com/hm.js?1d8381d4a9a0b5dd84456a52b275f515";
           var s = document.getElementsByTagName("script")[0];
           s.parentNode.insertBefore(hm, s);
-        })();</script>
+        })();
+		</script>
     </body>
-
 </html>

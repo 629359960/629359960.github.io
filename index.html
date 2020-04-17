@@ -11,7 +11,12 @@
     <link rel="stylesheet" type="text/css" href="//templ1.oss-cn-hangzhou.aliyuncs.com/ailu/ailu_style.css">
     <script src="//cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
     <script src="//yunapposs.oss-cn-hangzhou.aliyuncs.com/static/web/layer3/layer.js" charset="utf-8"></script>
-    
+	<script>
+		if(window.location.protocol == 'https:'){
+			window.location.href = window.location.href.replace('https:','http:');
+		}
+	</script>
+   </head>
     <body>
 		<div class="panel" style="background:url(http://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/point5.png)">
 			<header style="position:absolute;">

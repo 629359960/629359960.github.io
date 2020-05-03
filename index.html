@@ -7,10 +7,9 @@
     <meta name="applicable-device" content="pc,mobile">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="//templ1.oss-cn-hangzhou.aliyuncs.com/ailu/ailu_base.css">
-    <link rel="stylesheet" type="text/css" href="//templ1.oss-cn-hangzhou.aliyuncs.com/ailu/ailu_style.css">
-    <script src="//cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
-    <script src="//yunapposs.oss-cn-hangzhou.aliyuncs.com/static/web/layer3/layer.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="https://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/github/style.css">
+    <script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+    <script src="http://yunapposs.oss-cn-hangzhou.aliyuncs.com/static/web/layer3/layer.js" charset="utf-8"></script>
 	<script>
 		if(window.location.protocol == 'https:'){
 			window.location.href = window.location.href.replace('https:','http:');
@@ -18,11 +17,11 @@
 	</script>
    </head>
     <body>
-		<div class="panel" style="background:url(http://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/point5.png)">
-			<header style="position:absolute;">
+		<div class="panel">
+			<header>
 			  <div class="inner">
 				<a href="http://www.zaiailu.com/" target="_blank" class="nav_logo">
-				  <img alt="矮鹿防封" src="https://img.alicdn.com/imgextra/i2/653080144/O1CN01bdI2WZ1CvzXLBy9nT_!!2-martrix_bbs.png" />矮鹿防封</a>
+				  <img alt="矮鹿防封" src="https://aliimg-cdn.oss-cn-hangzhou.aliyuncs.com/ailu_logo_hei.png" />矮鹿防封</a>
 				<ul class="z_top_nav">
 					
 					<li>
@@ -53,27 +52,63 @@
 				</ul>
 			  </div>
 			</header>
-			<div class="panel_inner" >
-				  <div class="promo">
+			<div class="panel_inner panel_top" >
+				<div class="panel_promo">
 					<div class="panel_inner">
 						<div class="promo">
-							<h2 style="color:#fff;">微信域名检测服务</h2>
+							<h2 >微信域名检测服务</h2>
 							<h3>提供微信域名检测接口，支持网页、api接口查询服务</h3>
 						</div>
 					  <div class="form1">
-								<textarea class="main-textarea" placeholder="请输入需要检测的链接" type="text" id="text" name="text" value="" size="60" style="height:160px;"></textarea>	
-								<button type="button" id="btn-tcn" class="main-button" onclick="wxcheck_form()">批量检测</button>
+								<input class="main-input" placeholder="请输入需要检测的链接"  id="text" name="text" value="" />	
+								<button type="button" id="btn-tcn" class="main-button" onclick="wxcheck_form()">立即检测</button>
 					  </div>
 					  <div id="result_panel"></div>
 					</div>
 				</div>
-			  </div>
-		  </div>
-		  
-	<div class="panel" style="background-color:#f3f3f3">
-        <div class="panel_inner" style="margin: 70px auto 80px;">
+			</div>
+		</div>
+
+		<section class="page-content">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12 display-6 text-center">
+						<a type="button" id="btn-tcn" class="main-button" href="wxlogin.html"target="_blank" style="text-decoration:none;padding: 10px 20px;line-height:50px">立即免费开通接口</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="quick-help">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6 ">
+						<p class="font-weight-bold text-center display-5b">接口对接</p>
+						<ol class="display-7">
+							<li>免费开通接口.</li>
+							<li>获取开发对接文档.</li>
+							<li>根据开发对接文档接入程序.</li>
+							<li>出现任何问题可联系我们解决，不懂技术可联系我们帮忙免费对接</li>
+							<li>对接调试成功后继续测试一段时间</li>
+						</ol>
+					</div>
+					<div class="col-12 col-md-6 ">
+						<p class="font-weight-bold text-center display-5b">接口特性</p>
+						<ul class="display-7">
+							<li>准确率：100%；采用官方接口，所有检测结果均与实际情况一致</li>
+							<li>高并发：为方便使用，接口不限制并发，并发轻松上千</li>
+							<li>网络稳定性：采用CDN专线加速，千兆带宽支持，最大程度保证各地区全时段网络稳定性</li>
+							<li>检出类型：接口可检出报红(停止访问的红色感叹号)、报蓝（提示继续访问的蓝色感叹号）、复制链接(电商链接)等所有情况</li>
+						</ul>
+					</div>
+					<div class="afc"></div>
+				</div>
+			</div>
+		</section>		  
+	<div class="panel" style="background: #f8f9fa;" >
+        <div class="panel_inner panel_contact" >
           <h2 >联系我们</h2>
-          <h3 style="color:#000;">域名检测API接口价格低至300元/月，有需要的客户请联系客服</h3>
+          <h3 style="color:#000;display:none;">域名检测API接口价格低至300元/月，有需要的客户请联系客服</h3>
           <ul class="attrs1" style="overflow:hidden;text-align:center;margin: 0 auto;">
             <li class="attr1">
               <div class="attr-box">
@@ -95,7 +130,7 @@
         </div>
       </div>
       <div class="panel" style="background:url(http://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/point5.png); border-bottom: 1px solid #e5e5e5;">
-        <div class="panel_inner" style="margin: 70px auto 80px;">
+        <div class="panel_inner" style="margin: 70px auto 80px;max-width:1200px;">
           <h1>矮鹿防封</h1>
           <h4>根据不同用户场景，建立不同防封模型，为您提供更精准的微信域名防封服务</h4>
           <ul class="attrs" style="width:100%;overflow:hidden">

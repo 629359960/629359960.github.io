@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>微信域名监控服务 - 矮鹿防封</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="矮鹿防封微信域名监控报警系统-实时监控域名拦截状态，一旦发现域名库中有域名被封，会第一时间发出通知，支持微信通知短信通知和邮件通知等方式" >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="applicable-device" content="pc,mobile">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="baidu-site-verification" content="eLdFPe9iqr">
+	<link rel="shortcut icon" href="">
+	<link type="text/css" rel="stylesheet" href="https://templ1.oss-cn-hangzhou.aliyuncs.com/ailu/github/style.format.css" media="all" />
+	<style>
+		body{
+			background-color: #f5f7f8;
+			color: #444;
+		}
+		.text-left{
+			text-align:left;
+		}
+		.text-center{
+			text-align:center;
+		}
+		.text-right{
+			text-align:right;
+		}
+		.card {
+			border-radius: 4px;
+			color: #111;
+			padding: 20px 0 0;
+			border: 1px solid #d4dbe0;
+			margin:0 auto;
+			background-color:#fff;
+		}
+		.card-title{
+			padding:0px 0;
+		}
+		.card-header{
+			font-weight:bold;
+			border-bottom:4px solid #e8e8e8;
+			padding:10px 0;
+		}
+		
+		.card-block{
+			padding:20px 0 20px 0;
+		}
+		.card .card-block + .card-block {border-top:1px solid #e8e9eb;}
+		
+		.card-header:before,.card-block:before{
+			content: " ";
+			display: table;
+		}
+		.card-opts:after,.card-header:after,.card-block:after {
+			content: " ";
+			display: table;
+			clear: both;
+		}
+		
+		.btn-add{
+			padding: 8px 24px 10px;;
+			font-size: 1rem;;
+			line-height: 24px;
+			min-height: 44px;
+			cursor:pointer;
+			border:none;
+			color: #fff;
+			background:#444;
+			margin-bottom:2px;
+		}
+		
+		.btn-adddomain{
+			padding: 5px 16px 7px;
+			font-size: 14px;
+			line-height: 18px;
+			min-height: 32px;
+			cursor:pointer;
+			border:none;
+			margin-bottom:2px;
+			background: #1976d2!important;
+			border-color: #1976d2!important;
+			color:#fff;
+			border-radius:4px;
+		}
+		
+		.btn-adddomain:hover{
+			color: #fff!important;
+			background: #145fa9!important;
+			border-color: #145fa9!important
+		}
+		
+		.btn-cancle,.btn-del,.btn-edit{
+			padding: 5px 16px 7px;
+			font-size: 14px;
+			line-height: 18px;
+			border-radius: 4px;
+			cursor:pointer;
+			border:1px solid #aab7c2;
+			color: #111!;
+			margin-bottom:2px;
+			background-color:#fff;
+		}
+		
+		.btn-cancle:hover,.btn-edit:hover{
+			color: #111!important;
+			background: #f5f7f8!important;
+			border-color: #111!important;
+		}
+		.btn-del:hover{
+			color: #fff;
+			background: red;
+			border-color: red;
+		}
+		.status-ok{
+			color:green;
+		}
+		.status-no{
+			color:red;
+		}
+		.a-link{
+			color: rgb(25, 118, 210);
+			text-decoration: none;
+			font-weight:bold;
+			cursor:pointer;
+			font-size: 20px;
+		}
+		.text-muted{
+			color:#767676;
+			font-size:14px;
+		}
+		.panel-bind-openid {
+			background: #f5f7f8;
+			padding: 20px;
+			margin-bottom: 30px;
+			text-align:center;
+		}
+		
+		.panel-add-domain{
+			background: #f5f7f8;
+			padding:20px;
+			margin-bottom:30px;
+		}
+		.panel-edit-domain{
+			background: #f5f7f8;
+			padding:20px;
+			margin:20px;
+		}
+		
+		input{
+			width:100%;
+			padding:10px;
+		}
+		select{
+			width:100%;
+			padding:10px;
+		}
+		textarea{
+			width:100%;
+			padding:20px;
+		}
+		.panel-title{
+			font-size: 23px;
+			margin-bottom: 15px;
+			font-family: "\5FAE\8F6F\96C5\9ED1","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+			font-weight: 700;
+		}
+		span.req{
+			color: #db1802;
+		}
+		label{
+			display: inline-block;
+			margin-bottom: 5px;
+			font-family: '微软雅黑','Microsoft YaHei','Hiragino Sans GB',sans-serif;
+			font-weight: 700;
+			text-transform: initial;
+			font-size: 14px;
+		}
+		.btn-kaitong{
+		padding: 10px 24px 12px;
+		font-size: 1rem;
+		line-height: 24px;
+		min-height: 44px;
+		cursor: pointer;
+		border: none;
+		color: #fff;
+		background: #dc3545;
+		margin-bottom: 2px;
+		text-align:center;
+		border-radius: 5px;
+		
+		}
+		header a.nav_logo {
+			font-size: 28px;
+		}
+	</style>
+</head>
+<body>
+<header id="header">
+	<div class="container-fluid row navbar">
+		<a href="/" class="navbar-brand">
+			<img id="logo" src="https://aliimg-cdn.oss-cn-hangzhou.aliyuncs.com/ailu_logo_hei.png" alt="矮鹿防封" />
+			矮鹿防封
+		</a>
+		<ul class="navbar-nav row">
+
+					<li class="fmenu">
+					<a class="fmenu-a" href="http://www.zaiailu.com/">首页</a>
+					
+					</li>
+					
+					<li class="fmenu">
+					<a class="fmenu-a" href="http://www.zaiailu.com/jiankong.html">微信域名监控</a>
+					</li>
+					
+					<li class="fmenu">
+					<a class="fmenu-a" href="http://www.zaiailu.com/wxcheck">域名在线批量检测</a>
+					</li >
+					
+					<li class="fmenu">
+					<a class="fmenu-a" href="http://www.zaiailu.com/p/1635616.html">域名检测api接口</a>
+					</li >
+					
+					<li class="fmenu">
+					<a class="fmenu-a" href="http://www.zaiailu.com/p/1001004.html">域名防封</a>
+					</li>
+
+			
+		</ul>
+	</div>
+</header>
+<!--banner-->
+<div>
+	<div class="container-fluid card-wxjk" style="margin-top:30px">
+		<div class="card-opts">
+			<h1 class="card-title col-md-6"><span>域名监控</span></h1>
+			<div class="col-md-6 text-right" style="margin-bottom:24px;">
+				<button class="btn-add" type="button" onclick="panel_add()">添加域名</button> 
+				<button class="btn-add btn-notice" type="button" onclick="panel_add_ok()">微信通知</button>
+			</div>
+		</div>
+		<div id="wxjk-list" class="card">
+			<div class="card-header">
+				<div class="col-md-6"><span class="font-weight-bold">域名</span></div>
+				<div class="col-md-3"><span class="font-weight-bold">状态</span></div>
+				<div class="col-md-3 text-right"><span class="font-weight-bold">操作</span></div>
+			</div>
+			<div class="card-block">
+				<br><br><center style="color:#da0015">本页面为功能展示页，需要开通域名监控请联系客服</center><br>
+				<center><a class="btn-kaitong" type="button" href="wxlogin.html" target="_blank">立即开通</a> </center><br>
+				<center>矮鹿微信域名监控报警系统-实时监控域名拦截状态，一旦发现域名库中有域名被封，会第一时间发出通知，支持微信通知短信通知和邮件通知等方式。</center><br>
+			</div>
+		</div>
+	</div>
+	
+<audio id='audio' preload="none" loop="loop">
+	<source src="http://zqmodule.oss-cn-hangzhou.aliyuncs.com/www/auto.jump-api.cn/jingbao.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+
+<footer id="footer">
+	<div class="container-fluid">
+		<p class="text-inline">Copyright © 2018 - 2019 ｜<a href="/"> 矮鹿防封</a>｜ <a href="/blog">博客</a></p>
+	</div>
+</footer>
+<script src="http://juhecdn.oss-cn-hangzhou.aliyuncs.com/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://yunapposs.oss-cn-hangzhou.aliyuncs.com/static/web/layer3/layer.js" charset="utf-8"></script>
+<script>
+var api_host = '#';
+var my = {};
+function wxcheck_form(){
+	$("#result_panel").hide();
+	var url_longs = $("#text").val();
+	if(!url_longs) {
+		alert('输入格式不正确！');
+		return false;
+	}
+	$.get('/user/info',function(user_json){
+		my = JSON.parse(user_json);
+		$.post(api_host+"/"+"wxcheck/web_panel", {url_longs:url_longs,uid:my.uid,username:my.username,role:my.role,fid:my.fid,token:my.token,site_id:my.site_id},function(result){
+			$('#result_panel').html(result);
+			$("#result_panel").show();
+			wxcheck_handdle();
+		});
+	});
+	return false;
+}
+
+function wxcheck_handdle() {
+	var wxcheck_api_url = api_host+"/"+"wxcheck/web";
+	var em = $("*[data='-']:eq(0)");
+	if(em.length>0) {
+		em.attr('data','loading');
+		em.html('<img src="http://www.link114.cn/template/images/loading.gif" />');
+		$.post(wxcheck_api_url, {url_long:em.attr('url-long'),uid:my.uid,username:my.username,role:my.role,fid:my.fid,token:my.token,site_id:my.site_id},function(result){
+			if(result.indexOf('域名正常')==0) {
+				em.html('<span class="opt-result-ok" style="color:green;">域名正常</span>');
+				wxcheck_handdle();
+			} else  if(result.indexOf('域名被封')==0) {
+				em.html('<span class="opt-result-fail">域名被封</span>');
+				wxcheck_handdle();
+			}
+		});
+	}
+}
+
+function wxjk_notice_set(){
+	$('.panel-add-domain').remove();
+	$('.panel-bind-openid').remove();
+	$.get(api_host+"/wxjk/bind/openid?uid="+my.uid,
+	function(html){
+		$('#wxjk-list').prepend(html);
+	});
+}
+function panel_bind_cancle(){
+	$('.panel-bind-openid').remove();
+}
+
+function panel_add(){
+	$('.panel-add-domain').remove();
+	$('.panel-bind-openid').remove();
+	
+	$.get(api_host+"/wxjk/add",function(html){
+		$('#wxjk-list').prepend(html);
+	});
+}
+function panel_add_ok(){
+		alert('请联系客服开通！');
+}
+
+function panel_add_cancle(){
+	$('.panel-add-domain').remove();
+}
+
+function panel_edit(id){
+	$('.panel-add-domain').remove();
+	$('.panel-edit-domain').remove();
+	$('.panel-bind-openid').remove();
+	
+	$.get('/user/info',function(userinfo){
+		var my = JSON.parse(userinfo);
+		$.post(api_host+"/wxjk/edit", {id:id,uid:my.uid},function(html){
+			$('#wxjk_'+id).after(html);
+		});
+	});
+}
+
+function panel_edit_cancle(){
+	$('.panel-edit-domain').remove();
+}
+function panel_edit_ok(){
+	var id = $(".panel-edit-domain input[name='id']").val();
+	var url = $(".panel-edit-domain input[name='url']").val();
+	var status = $(".panel-edit-domain select[name='status'] option:selected").val();
+	var contact =  $(".panel-edit-domain input[name='contact']").val();
+	if(!url) {
+		alert('请填写域名！');
+		return false;
+	}
+	$.get('/user/info',function(userinfo){
+		var my = JSON.parse(userinfo);
+		$.post(api_host+"/wxjk/save", {id:id,url:url,status:status,contact:contact,uid:my.uid,role:my.role,token:my.token},function(result){
+			layer.msg(result,{time: 1500});
+			setTimeout(function(){
+				window.location.reload();
+			},2000);
+		});
+	});
+}
+function panel_del(id){
+	layer.confirm('确定删除域名？', { 
+		btn: ['确定','取消']
+	},function(){
+		$.get('/user/info',function(userinfo){
+			var my = JSON.parse(userinfo);
+			$.post(api_host+"/wxjk/del?id="+id, {uid:my.uid,role:my.role,fid:my.fid,token:my.token},function(result){
+				layer.msg(result,{time: 1500});
+				setTimeout(function(){
+					window.location.reload();
+				},2000);
+			});
+		});
+	},function(){});
+}
+function wxjk_load() {
+	$.get('/user/info',function(userinfo){
+		var my = JSON.parse(userinfo);
+		var wxjk_api_url = api_host+"/wxjk/web_panel";
+		$.post(wxjk_api_url, {uid:my.uid},function(html){
+			$('#wxjk-list').html(html);
+		});
+	});
+}
+wxjk_load();
+
+
+/*function wxjk_msg() {
+	var wxjk_api_url = api_host+"/wxjk/msg?uid="+my.uid;
+	$.get(wxjk_api_url,function(html){
+		if(html!='0') {
+			//声音播放
+			document.getElementById("audio").load();
+			document.getElementById("audio").play();
+			layer.confirm('你有新的域名被封！！！', { 
+				btn: ['我知道了'],
+				cancel: function(){
+					document.getElementById("audio").pause();
+					$.post(wxjk_api_url,function(result){
+						setTimeout(wxjk_msg,5000);
+					});
+				}
+			},function(){
+				document.getElementById("audio").pause();
+				$.post(wxjk_api_url,function(result){
+					setTimeout(wxjk_msg,5000);
+				});
+			});
+		} else {
+			setTimeout(wxjk_msg,5000);
+		}
+	});
+}*/
+$.get('/user/info',function(userinfo){
+	my = JSON.parse(userinfo);
+});
+
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1d8381d4a9a0b5dd84456a52b275f515";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
